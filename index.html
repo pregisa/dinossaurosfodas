@@ -314,27 +314,65 @@
       });
     });
 
-    // Quiz simples
-    document.getElementById('quiz-submit').addEventListener('click', function() {
-      const selectedOption = document.querySelector('input[name="quiz"]:checked');
-      const feedback = document.getElementById('quiz-feedback');
+   <!-- Seção do Quiz -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Teste Seu Conhecimento</h2>
+    
+    <div class="quiz-container bg-white p-4 rounded shadow">
+      <div id="quiz-question" class="mb-4">
+        <h4>Qual dinossauro tinha uma vela dorsal?</h4>
+      </div>
+      
+      <div id="quiz-options" class="mb-4">
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="quizOption" id="option1" value="1">
+          <label class="form-check-label" for="option1">Tiranossauro Rex</label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="quizOption" id="option2" value="2">
+          <label class="form-check-label" for="option2">Espinossauro</label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="quizOption" id="option3" value="3">
+          <label class="form-check-label" for="option3">Triceratops</label>
+        </div>
+      </div>
+      
+      <button id="quiz-submit" class="btn btn-primary">Verificar Resposta</button>
+      <div id="quiz-feedback" class="mt-3 alert d-none"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Quiz corrigido
+document.addEventListener('DOMContentLoaded', function() {
+  const quizSubmit = document.getElementById('quiz-submit');
+  const quizFeedback = document.getElementById('quiz-feedback');
+  
+  if (quizSubmit) {
+    quizSubmit.addEventListener('click', function() {
+      const selectedOption = document.querySelector('input[name="quizOption"]:checked');
       
       if (!selectedOption) {
-        feedback.textContent = "Por favor, selecione uma opção!";
-        feedback.className = "mt-3 alert alert-warning";
-        feedback.classList.remove('d-none');
+        quizFeedback.textContent = "Por favor, selecione uma opção!";
+        quizFeedback.className = "mt-3 alert alert-warning";
+        quizFeedback.classList.remove('d-none');
         return;
       }
       
       if (selectedOption.value === "2") {
-        feedback.textContent = "Correto! O Espinossauro tinha uma impressionante vela dorsal.";
-        feedback.className = "mt-3 alert alert-success";
+        quizFeedback.textContent = "✅ Correto! O Espinossauro tinha uma impressionante vela dorsal.";
+        quizFeedback.className = "mt-3 alert alert-success";
       } else {
-        feedback.textContent = "Incorreto! A resposta certa é Espinossauro.";
-        feedback.className = "mt-3 alert alert-danger";
+        quizFeedback.textContent = "❌ Incorreto! A resposta certa é Espinossauro.";
+        quizFeedback.className = "mt-3 alert alert-danger";
       }
       
-      feedback.classList.remove('d-none');
+      quizFeedback.classList.remove('d-none');
+    });
+   }
     });
   </script>
 </body>
